@@ -43,11 +43,11 @@ header p {
 }
 
 .three-column-card {
-  background-color: #FFF8DC; /* Cream color */
-  border: 2px solid black;
+  background-color: #ffffff; /* Brighter background for contrast */
+  border: 3px solid #000000; /* Thicker border for visibility */
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
 .three-column-card h3 {
@@ -89,8 +89,10 @@ header p {
   display: flex; /* Place cards in a row */
   gap: 20px; /* Space between cards */
   overflow-x: auto; /* Enable horizontal scroll */
-  overflow-y: hidden;
+  overflow-y: visible; /* Prevent cards/shadows from getting clipped */
   scroll-snap-type: x mandatory; /* Smooth snapping between cards */
+  flex-wrap: nowrap; /* Keep cards in one row */
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on mobile */
 }
 
 /* RTL: start the row from the right */
@@ -123,11 +125,11 @@ header p {
 .timeline-item {
   position: relative;
   margin-bottom: 0; /* No vertical spacing in horizontal layout */
-  background-color: #FFF8DC; /* Cream color */
+  background-color: #ffffff; /* Brighter background for contrast */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border: 2px solid black; /* Black border around all cards */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  border: 3px solid #000000; /* Thicker black border */
   min-width: 260px; /* Keep cards readable */
   max-width: 320px;
   scroll-snap-align: start; /* Snap each card into view */
@@ -174,12 +176,14 @@ header p {
 /* Flip card styles for interactive card 1 */
 .timeline-item-flip {
   perspective: 1000px; /* 3D perspective for flip effect */
+  min-height: 320px; /* Ensure the card has visible height */
 }
 
 .flip-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 320px; /* Match the visible card height */
   transition: transform 0.6s; /* Smooth flip animation */
   transform-style: preserve-3d; /* Enable 3D transformations */
 }
@@ -218,6 +222,7 @@ header p {
 .flip-card-back {
   position: absolute;
   width: 100%;
+  height: 100%;
   min-height: 200px;
   backface-visibility: hidden; /* Hide the back when showing front */
   border-radius: 8px;
@@ -226,13 +231,13 @@ header p {
 
 /* Front face styling */
 .flip-card-front {
-  background-color: #FFF8DC; /* Cream color */
+  background-color: #ffffff; /* Brighter background for contrast */
   padding: 20px;
 }
 
 /* Back face styling - rotated 180 degrees initially */
 .flip-card-back {
-  background-color: #FFF8DC; /* Cream color */
+  background-color: #ffffff; /* Brighter background for contrast */
   transform: rotateY(180deg);
   display: flex;
   align-items: center;
