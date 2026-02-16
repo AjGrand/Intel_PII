@@ -1,0 +1,230 @@
+/* Add your CSS here */
+
+/* Reset and basic styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Intel Clear', 'Segoe UI', Arial, sans-serif; /* Intel Clear font with fallbacks */
+  line-height: 1.6;
+  padding: 20px;
+  background-color: #0096FF; /* Electric blue color */
+}
+
+/* Header h1 styling */
+h1 {
+  font-size: 25px;
+  text-align: center; /* Center the h1 text */
+}
+
+/* Center header subheading */
+header p {
+  text-align: center; /* Center the subheading text */
+}
+
+/* Timeline container */
+.timeline {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* Vertical line running down the timeline */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 30px; /* Position line from the left */
+  top: 0;
+  bottom: 0;
+  width: 4px; /* Width of the vertical line */
+  background-color: #0071c5; /* Intel blue color */
+}
+
+/* Each timeline item */
+.timeline-item {
+  position: relative;
+  padding-left: 80px; /* Space for the line and dot */
+  margin-bottom: 150px; /* Increased space between items for even spread */
+  background-color: #FFF8DC; /* Cream color */
+  padding: 20px;
+  padding-left: 80px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 2px solid black; /* Black border around all cards */
+}
+
+/* Circle dot on the timeline */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -48px; /* Position relative to the item */
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* Makes it a circle */
+  background-color: #0071c5; /* Intel blue */
+  border: 4px solid #FFF8DC; /* Cream color border */
+  box-shadow: 0 0 0 4px #0071c5;
+}
+
+/* Date styling - appears above description */
+.timeline-date {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0071c5; /* Intel blue */
+  margin-bottom: 10px;
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Show link style when hovering over dates */
+.timeline-date:hover {
+  text-decoration: underline; /* Add underline on hover */
+  color: #005a9e; /* Darker blue on hover */
+}
+
+/* Title styling */
+.timeline-title {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Timeline image styling */
+.timeline-image {
+  width: 100%; /* Full width of the card */
+  max-width: 400px; /* Maximum width */
+  height: auto; /* Keep aspect ratio */
+  border-radius: 8px; /* Rounded corners */
+  margin: 15px 0; /* Space above and below */
+  display: block; /* Makes the image a block element */
+}
+
+/* Flip card styles for interactive card 1 */
+.timeline-item-flip {
+  perspective: 1000px; /* 3D perspective for flip effect */
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s; /* Smooth flip animation */
+  transform-style: preserve-3d; /* Enable 3D transformations */
+}
+
+/* When hovering over the flip card, rotate it */
+.timeline-item-flip:hover .flip-card-inner {
+  transform: rotateY(180deg) translateX(20px); /* Flip and move to the right */
+}
+
+/* When card is clicked (for mobile), flip it */
+.timeline-item-flip.flipped .flip-card-inner {
+  transform: rotateY(180deg) translateX(20px); /* Flip and move to the right */
+}
+
+/* On mobile devices, disable hover and use click only */
+@media (max-width: 767px) {
+  /* Disable hover effect on mobile */
+  .timeline-item-flip:hover .flip-card-inner {
+    transform: none; /* No flip on hover for mobile */
+  }
+  
+  /* Only flip when clicked (flipped class is added) */
+  .timeline-item-flip.flipped .flip-card-inner {
+    transform: rotateY(180deg); /* Flip without moving right on mobile */
+  }
+}
+
+/* Front and back faces of the card */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  min-height: 200px;
+  backface-visibility: hidden; /* Hide the back when showing front */
+  border-radius: 8px;
+  border: 2px solid black; /* Black border around flip card faces */
+}
+
+/* Front face styling */
+.flip-card-front {
+  background-color: #FFF8DC; /* Cream color */
+  padding: 20px;
+}
+
+/* Back face styling - rotated 180 degrees initially */
+.flip-card-back {
+  background-color: #FFF8DC; /* Cream color */
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Image inside the back of the flip card */
+.flip-card-back .timeline-image {
+  margin: 0; /* Remove margins for better centering */
+  max-width: 100%;
+}
+
+/* Description styling */
+.timeline-description {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Hover effect for timeline items */
+.timeline-item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Zigzag layout for computers (tablets and larger screens) */
+@media (min-width: 768px) {
+  /* Center the timeline container */
+  .timeline {
+    max-width: 1000px;
+  }
+
+  /* Move the vertical line to the center */
+  .timeline::before {
+    left: 50%; /* Center the line */
+    transform: translateX(-50%);
+  }
+
+  /* Default: all items on the left side */
+  .timeline-item {
+    width: 45%; /* Make items take up less than half width */
+    padding-left: 20px;
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  /* Position the dot for left-side items */
+  .timeline-item::before {
+    right: -58px; /* Position dot to the right of left-side items */
+    left: auto;
+  }
+
+  /* Even items: position on the right side (zigzag effect) */
+  .timeline-item:nth-child(even) {
+    margin-left: auto; /* Push to the right */
+    margin-right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Position the dot for right-side items */
+  .timeline-item:nth-child(even)::before {
+    left: -58px; /* Position dot to the left of right-side items */
+    right: auto;
+  }
+}
